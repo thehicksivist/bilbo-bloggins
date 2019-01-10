@@ -7,11 +7,8 @@ class Create extends Component {
 
     state = {
         data: [],
-        id: 0,
         message: null,
         intervalIsSet: false,
-        idToDelete: null,
-        idToUpdate: null,
         objectToUpdate: null
       };
     
@@ -36,16 +33,19 @@ class Create extends Component {
       }
 
     putDataToDB = message => {
-        let currentIds = this.state.data.map(data => data.id);
-        let idToBeAdded = 0;
-        while (currentIds.includes(idToBeAdded)) {
-          ++idToBeAdded;
-        }
+
+        alert(this.state.data + 'Your post has been added!');
+        // wipe component entry field
+        
     
         axios.post("/api/putData", {
-          id: idToBeAdded,
           message: message
+        }).then((res) => {
+            console.log(res)
+        }).catch((err) => {
+            console.error('caught on axios post', err)
         });
+        
       };
 
     render() {

@@ -51,11 +51,11 @@ router.post("/updateData", (req, res) => {
 
 // this is our delete method
 // this method removes existing data in our database
-router.delete("/deleteData/:id", (req, res) => {
-  const id  = req.params.id;
+router.delete("/deleteData", (req, res) => {
+  const { id } = req.body;
   Data.findOneAndDelete(id, err => {
     if (err) return res.send(err);
-    return res.json({ success: true , id: id});
+    return res.json({ success: true });
   });
 });
 
@@ -64,15 +64,16 @@ router.delete("/deleteData/:id", (req, res) => {
 router.post("/putData", (req, res) => {
   let data = new Data();
 
-  const { message } = req.body;
+  const { id, message } = req.body;
 
-  if (!message) {
+  if ((!id && id !== 0) || !message) {
     return res.json({
       success: false,
       error: "INVALID INPUTS"
     });
   }
   data.message = message;
+  data.id = id;
   data.save(err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });

@@ -18,8 +18,6 @@
   },
   "homepage": "https://github.com/thehicksivist/bilbo-bloggins#readme",
   "dependencies": {
-    "axios": "^0.18.0",
-    "concurrently": "^4.1.0",
-    "react-router-dom": "^4.3.1"
+    "concurrently": "^4.1.0"
   }
 }

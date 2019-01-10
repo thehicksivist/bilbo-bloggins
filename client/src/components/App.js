@@ -116,6 +116,7 @@ class App extends Component {
                 </li>
               ))}
         </ul>
+        
         <div style={{ padding: "10px" }}>
           <input
             type="text"
@@ -127,6 +128,7 @@ class App extends Component {
             ADD
           </button>
         </div>
+
         <div style={{ padding: "10px" }}>
           <input
             type="text"

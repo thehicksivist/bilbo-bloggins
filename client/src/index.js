@@ -1,12 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import {
+    Route,
+    Switch,
+    BrowserRouter as Router
+} from 'react-router-dom'
+import App from './components/App'
+import Nav from './components/Nav'
+import Create from './components/Create'
+import Contact from './components/Contact'
+import Post from './components/Post'
+import Notfound from './components/Notfound'
+import PostList from './components/PostList';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const routing = (
+    <Router>
+      <div>
+        <Nav />
+        <Switch>
+            <Route exact path="/posts" component={PostList} />
+            <Route exact path="/create" component={Create} />
+            <Route path="/:id" component={Post} />
+            <Route exact path="/" component={App} />
+            <Route path="/contact" component={Contact} />
+            <Route component={Notfound} />
+        </Switch>
+      </div>
+    </Router>
+  )
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(routing, document.getElementById('root'));
+
